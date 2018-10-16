@@ -8,13 +8,13 @@ cursor.executescript("""
                    sub_id integer PRIMARY KEY AUTOINCREMENT not null,
                    subj_name text not null
                    );
-                   
+
                 CREATE TABLE IF NOT EXISTS students(
                    st_id integer PRIMARY KEY AUTOINCREMENT not null,
                    fio text not null,
                    group1 text not null
                    );
-                   
+
                 CREATE TABLE IF NOT EXISTS control_w(
                    cw_id integer PRIMARY KEY AUTOINCREMENT not null,
                    subj int not null,
@@ -35,13 +35,13 @@ conn.commit()
 
 
 def add_subject(subj_name):
-    cursor.execute("INSERT INTO subjects (subj_name) VALUES ('%s')" %subj_name)
+    cursor.execute("INSERT INTO subjects (subj_name) VALUES ('%s')" % subj_name)
     conn.commit()
     return 'Perfection'
 
 
 def add_student(fio, group1):
-    cursor.execute("INSERT INTO students (fio, group1) VALUES ('%s', '%s')" %(fio, group1))
+    cursor.execute("INSERT INTO students (fio, group1) VALUES ('%s', '%s')" % (fio, group1))
     conn.commit()
     return 'Perfection'
 
@@ -59,7 +59,7 @@ def add_questions(task, con_w):
 
 
 def delete_subj(subj_name):
-    cursor.execute("DELETE FROM subjects WHERE subj_name='%s'" %subj_name)
+    cursor.execute("DELETE FROM subjects WHERE subj_name='%s'" % subj_name)
     conn.commit()
 
 
