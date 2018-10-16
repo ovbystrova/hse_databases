@@ -125,6 +125,6 @@ def update_questions(task, q_id):
 
 
 def update_control_w(mark, cw_id, student):
-    cursor.execute("UPDATE subjects SET mark='%s' WHERE [cw_id='%s'] and [student='%s']" % (mark, cw_id, student))
+    cursor.execute("UPDATE control_w SET mark='%s' WHERE cw_id='%s' and student='%s'" % (mark, cw_id, student))
     conn.commit()
     return
