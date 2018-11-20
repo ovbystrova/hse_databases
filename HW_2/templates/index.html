@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Стартовая страница</title>    
+    <meta charset="utf-8">
+   </head>
+<body>
+{% extends "base.html" %}
+<br>
+<br>
+{% block content %}
+  <h1>База данных мебельного магазина</h1>
+<br>
+<text>
+База данных состоит из четырех таблиц со следующими параметрами:<br>
+items: item_id, name, description, price<br>
+customers: id, name, phone, email<br>
+purchases: id, item_id, customer_id, date<br>
+complaints: id, text, item_id, purchase_id
+<br>
+<br>
+Воспользуйтесь навигацией в верней части экрана, чтобы посмотреть функционал программы.
+</text>
+{% endblock %}
+</body>
+</html>

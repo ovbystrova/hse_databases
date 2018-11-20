@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>Сложный запрос</title>    
+    <meta charset="utf-8">
+   </head>
+<body>
+{% extends "base.html" %}
+<br>
+<br>
+{% block content %}
+  <h1>Сложный запрос</h1>
+<br>
+<text>
+Вы можете посмотреть все жалобы на конкреетный товар по его названию
+</text>
+<form>
+<div>Введите имя товара, по которому хотите посмотреть жалобы (например, vintage table, shelve, closet):</div>
+<input type="text" name="item_name">
+<div class="submission"><input type="submit" value="Искать"></div>
+</form>
+{% endblock %}
+</body>
+</html>

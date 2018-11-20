@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>Поиск по фильтру</title>    
+    <meta charset="utf-8">
+   </head>
+<body>
+{% extends "base.html" %}
+<br>
+<br>
+{% block content %}
+  <h1>Поиск по фильтру</h1>
+<br>
+<text>
+Вы можете выбрать все товары, стоимость которых превышает введенное число.
+</text>
+<form>
+<div>Введите цену (просто число), чтобы мы показали товары, которые стоят больше:</div>
+<input type="int" name="money">
+<div class="submission"><input type="submit" value="Посмотреть"></div>
+</form>
+
+{% endblock %}
+</body>
+</html>
