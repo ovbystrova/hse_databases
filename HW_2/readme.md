@@ -13,13 +13,13 @@ http://127.0.0.1:5000/
 
 **Таблицы БД:**
 
-items: id , name, descr, price.
+items: id , name, description, price.
 
 
 customers: id, name, phone, email
 
 
-purchases: id, item_id, customer id, date,
+purchases: id, item_id, customer id, date
 
 
 complaints: id, text, item_id, purchase_id
