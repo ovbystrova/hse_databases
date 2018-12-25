@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Сделано!</title>    
+    <meta charset="utf-8">
+   </head>
+<body>
+{% extends "base.html" %}
+<br>
+<br>
+{% block content %}
+  <h1>Вот что получилось:</h1>
+<br>
+
+<table>
+
+<tr>
+<th>id_video</th>
+<th>name</th>
+<th>time</th>
+<th>mimic</th>
+</tr>
+{% for item in res %}
+<tr>
+<td>{{ item[6]}}</td>
+<td>{{ item[1]}}</td>
+<td>{{ item[7]}}</td>
+<td>{{ item[8]}}</td>
+</tr>
+<br>
+{% endfor %}
+</table>
+<text>
+Вы можете еще раз воспользоваться навигацией, если хотите.
+</text>
+{% endblock %}
+</body>
+</html>

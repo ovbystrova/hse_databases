@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Стартовая страница</title>    
+    <meta charset="utf-8">
+   </head>
+<body>
+{% extends "base.html" %}
+<br>
+<br>
+{% block content %}
+  <h1>База данных видео разметки</h1>
+<br>
+<text>
+База данных состоит из четырех таблиц со следующими параметрами:<br>
+meta:id_video, name, date_of_recording, location, author, lang<br>
+zhest:id_video, time, zhesticulation<br>
+mimic:id_video, time, text <br>
+text:id_video, time, text
+<br>
+<br>
+Воспользуйтесь навигацией в верней части экрана, чтобы посмотреть функционал программы.
+</text>
+{% endblock %}
+</body>
+</html>

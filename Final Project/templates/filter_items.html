@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>Поиск по фильтру</title>    
+    <meta charset="utf-8">
+   </head>
+<body>
+{% extends "base.html" %}
+<br>
+<br>
+{% block content %}
+  <h1>Поиск по фильтру</h1>
+<br>
+<text>
+Вы можете выбрать весь текст, который идет после определенной секунды в видео.
+</text>
+<form>
+<div>Введите id_video и номер секунды:</div>
+<input type="int" name="id_video">
+<input type="int" name="money">
+<div class="submission"><input type="submit" value="Посмотреть"></div>
+</form>
+
+{% endblock %}
+</body>
+</html>

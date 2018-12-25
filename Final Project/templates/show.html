@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Посмотреть БД</title>    
+    <meta charset="utf-8">
+   </head>
+<body>
+{% extends "base.html" %}
+<br>
+<br>
+{% block content %}
+  <h1>Тут можно посмотреть таблицу из БД</h1>
+<br>
+<text>
+Вы можете выбрать какую таблицу посмотреть: meta, zhest, mimic, text
+</text>
+<form>
+<div>Введите название таблицы, которую хотите посмотреть:</div>
+<input type="text" name="req">
+<div class="submission"><input type="submit" value="Посмотреть"></div>
+</form>
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>Сложный запрос</title>    
+    <meta charset="utf-8">
+   </head>
+<body>
+{% extends "base.html" %}
+<br>
+<br>
+{% block content %}
+  <h1>Сложный запрос</h1>
+<br>
+<text>
+Вы можете посмотреть всю мимику определенного автора. 
+</text>
+<form>
+<div>Введите имя автора видео, чью мимику хотите посмотреть (например,Emma Stone, Fox Malder):</div>
+<input type="text" name="author">
+<div class="submission"><input type="submit" value="Искать"></div>
+</form>
+{% endblock %}
+</body>
+</html>
