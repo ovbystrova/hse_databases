@@ -33,3 +33,6 @@ text: id_video, time, text
 Запрос на весь текст после введенной секунды видео(Запрос с WHERE и AND)
 
 Показ таблиц(SELECT *)
+
+
+P.S. Для заполнения таблицы были взяты открывки из роликов с TED конференций. (https://www.youtube.com/watch?v=k0GQSJrpVhM&t=6s, https://www.youtube.com/watch?v=Zd-h7ImxOnw&t=45s, https://www.youtube.com/watch?v=e72sBt_BSuQ&t=8s)
