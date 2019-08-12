@@ -34,4 +34,4 @@ text: id_video, time, text
 Показ таблиц(SELECT *)
 
 
-P.S. Для заполнения таблицы были взяты открывки из роликов с TED конференций. (<https://www.youtube.com/watch?v=k0GQSJrpVhM&t=6s, https://www.youtube.com/watch?v=Zd-h7ImxOnw&t=45s, https://www.youtube.com/watch?v=e72sBt_BSuQ&t=8s>)
+P.S. Для заполнения таблицы были взяты открывки из роликов с TED конференций. (<https://www.youtube.com/watch?v=k0GQSJrpVhM&t=6s>, <https://www.youtube.com/watch?v=Zd-h7ImxOnw&t=45s>, <https://www.youtube.com/watch?v=e72sBt_BSuQ&t=8s>)
