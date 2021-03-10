@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `meta`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `meta` (
-  `id_video` int(11) DEFAULT NULL,
+  `id_video` int(11) PRIMARY KEY,
   `name` varchar(255) DEFAULT NULL,
   `date_of_recording` varchar(10) DEFAULT NULL,
   `location` varchar(20) DEFAULT NULL,
@@ -52,7 +52,8 @@ DROP TABLE IF EXISTS `mimic`;
 CREATE TABLE `mimic` (
   `id_video` int(11) DEFAULT NULL,
   `time` int(11) DEFAULT NULL,
-  `text` varchar(255) DEFAULT NULL
+  `text` varchar(255) DEFAULT NULL,
+  FOREIGN KEY (id_video) REFERENCES meta(id_video)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -76,7 +77,8 @@ DROP TABLE IF EXISTS `text`;
 CREATE TABLE `text` (
   `id_video` int(11) DEFAULT NULL,
   `time` int(11) DEFAULT NULL,
-  `text` varchar(250) DEFAULT NULL
+  `text` varchar(250) DEFAULT NULL,
+  FOREIGN KEY (id_video) REFERENCES meta(id_video)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -100,7 +102,8 @@ DROP TABLE IF EXISTS `zhest`;
 CREATE TABLE `zhest` (
   `id_video` int(11) DEFAULT NULL,
   `time` int(11) DEFAULT NULL,
-  `zhesticulation` varchar(255) DEFAULT NULL
+  `zhesticulation` varchar(255) DEFAULT NULL,
+  FOREIGN KEY (id_video) REFERENCES meta(id_video)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

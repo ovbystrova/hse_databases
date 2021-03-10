@@ -3,69 +3,130 @@ from flask import Flask, request, render_template, redirect, url_for
 import pymysql as pm
 
 USER = 'root'
-PASSWORD = '1M@rioCasas'
+PASSWORD = 'toor'
 DB_NAME = 'videos'
 
-connection = pm.connect(user = USER,
-                        password = PASSWORD,
-                        db = DB_NAME,
-                        charset = 'utf8mb4')
+connection = pm.connect(user=USER,
+                        password=PASSWORD,
+                        db=DB_NAME,
+                        charset='utf8mb4')
 cursor = connection.cursor()
 
+
 def insert_meta(id_video, name, date_of_recording, location, author, lang):
-    cursor.execute('INSERT INTO meta (id_video, name, date_of_recording, location, author, lang) VALUES("%d", "%s", "%s", "%s", "%s", "%s")'
-                   % (id_video, name, date_of_recording, location, author, lang))
+    """
+    Insert line to meta table
+    :param id_video: int
+    :param name: str
+    :param date_of_recording: str
+    :param location: str
+    :param author: str
+    :param lang: str
+    :return:
+    """
+    cursor.execute(
+        'INSERT INTO meta (id_video, name, date_of_recording, location, author, lang) VALUES("%d", "%s", "%s", "%s", '
+        '"%s", "%s") '
+        % (id_video, name, date_of_recording, location, author, lang))
     connection.commit()
+
 
 def insert_zhest(id_video, time, zhesticulation):
-    cursor.execute('INSERT INTO zhest (id_video, time, zhesticulation) VALUES("%d", "%d", "%s")' % (id_video, time, zhesticulation))
+    """
+    Insert line into zhest table
+    :param id_video: int
+    :param time: int
+    :param zhesticulation: str
+    :return:
+    """
+    cursor.execute('INSERT INTO zhest (id_video, time, zhesticulation) VALUES("%d", "%d", "%s")' % (
+        id_video, time, zhesticulation))
     connection.commit()
 
+
 def insert_mimic(id_video, time, text):
+    """
+    Insert line into mimic table
+    :param id_video: int
+    :param time: ind
+    :param text: str
+    :return:
+    """
     cursor.execute('INSERT INTO mimic (id_video, time, text) VALUES("%d", "%d", "%s")' % (id_video, time, text))
     connection.commit()
 
+
 def insert_text(id_video, time, text):
+    """
+    Insert line into text table
+    :param id_video: int
+    :param time: int
+    :param text: str
+    :return:
+    """
     cursor.execute('INSERT INTO text (id_video, time, text) VALUES("%d", "%d", "%s")' % (id_video, time, text))
     connection.commit()
 
-#Запрос на весь текст после такой-то секунды видео  (нужно id_video, time).
+
+# Запрос на весь текст после такой-то секунды видео  (нужно id_video, time).
 def complex_text(id_video, time):
+    """
+    Shows text from the specific video after specific time
+    :param id_video: int
+    :param time: int
+    :return:
+    """
     try:
-        cursor.execute('SELECT * FROM text WHERE id_video = "%d" AND time > "%d"' %(id_video, time))
+        cursor.execute('SELECT * FROM text WHERE id_video = "%d" AND time > "%d"' % (id_video, time))
         res = cursor.fetchall()
     except:
         print('Nothing like that')
     connection.commit()
     return res
 
-#Запрос на всю мимику по автору видео
+
+# Запрос на всю мимику по автору видео
 def complex_search(author):
-    cursor.execute('SELECT * FROM meta INNER JOIN mimic ON (meta.author = "%s" and mimic.id_video = meta.id_video)' % (author))
+    """
+    Shows all mimic by author
+    :param author: str
+    :return:
+    """
+    cursor.execute(
+        'SELECT * FROM meta INNER JOIN mimic ON (meta.author = "%s" and mimic.id_video = meta.id_video)' % (author))
     res = cursor.fetchall()
     connection.commit()
     return res
 
-#Просмотр БД (отдельной таблицы)
+
+# Просмотр БД (отдельной таблицы)
 def show(request):
-    if request =='meta':
+    """
+    Show one of existed tables
+    :param request: str
+    :return:
+    """
+    if request == 'meta':
         cursor.execute('SELECT * FROM meta')
-    elif request =='zhest':
+    elif request == 'zhest':
         cursor.execute('SELECT * FROM zhest')
-    elif request =='mimic':
+    elif request == 'mimic':
         cursor.execute('SELECT * FROM mimic')
-    elif request =='text':
+    elif request == 'text':
         cursor.execute('SELECT * FROM text')
     res = cursor.fetchall()
     connection.commit()
     return res
 
+
 app = Flask(__name__)
+
 
 @app.route('/')
 @app.route('/index')
 def index():
     return render_template('index.html')
+
 
 @app.route('/insert', methods=['GET', 'POST'])
 def insert():
@@ -81,17 +142,17 @@ def insert():
             author = parametrs[4]
             lang = parametrs[5]
             insert_meta(id_video, name, date_of_recording, location, author, lang)
-        elif function =='insert_zhest':
+        elif function == 'insert_zhest':
             id_video = int(parametrs[0])
             time = int(parametrs[1])
             zhest = parametrs[2]
             insert_zhest(id_video, time, zhest)
-        elif function =='insert_mimic':
+        elif function == 'insert_mimic':
             id_video = int(parametrs[0])
             time = int(parametrs[1])
             text = parametrs[2]
             insert_mimic(id_video, time, text)
-        elif function =='insert_text':
+        elif function == 'insert_text':
             id_video = int(parametrs[0])
             time = int(parametrs[1])
             text = parametrs[2]
@@ -105,8 +166,9 @@ def search_join():
     if request.args:
         author = request.args['author']
         res = complex_search(author)
-        return render_template('response.html',res = res)
+        return render_template('response.html', res=res)
     return render_template('search_join.html')
+
 
 @app.route('/filter_items', methods=['GET', 'POST'])
 def filter_items():
@@ -114,8 +176,9 @@ def filter_items():
         id_video = request.args['id_video']
         money = request.args['money']
         res = complex_text(int(id_video), int(money))
-        return render_template('filter_items_response.html', res = res )
+        return render_template('filter_items_response.html', res=res)
     return render_template('filter_items.html')
+
 
 @app.route('/show', methods=['GET', 'POST'])
 def show_bd():
@@ -127,6 +190,7 @@ def show_bd():
         else:
             return render_template('show_response.html', res=res)
     return render_template('show.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
