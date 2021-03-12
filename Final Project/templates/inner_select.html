@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Вложенный Запрос</title>
+    <meta charset="utf-8">
+   </head>
+<body>
+{% extends "base.html" %}
+<br>
+<br>
+{% block content %}
+  <h1>Вложенный Запрос</h1>
+<br>
+<text>
+Показать все названия видео и дату указанного автора
+</text>
+<form>
+<div>Введите название города (Florida)</div>
+<input type="text" name="author">
+<div class="submission"><input type="submit" value="Посмотреть"></div>
+</form>
+
+{% endblock %}
+</body>
+</html>

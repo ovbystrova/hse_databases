@@ -99,6 +99,21 @@ def complex_search(author):
     return res
 
 
+def _inner_select(location):
+    cursor.execute(
+        'SELECT name, date_of_recording FROM (SELECT * FROM meta ) as T LEFT OUTER JOIN mimic ON T.id_video WHERE T.author="%s"' % (location)
+    )
+    res = cursor.fetchall()
+    connection.commit()
+    return res
+
+# def select_from_three_tables():
+#     cursor.execute(
+#         ''
+#     )
+#     res = cursor.fetchall()
+#     connection.commit()
+
 # Просмотр БД (отдельной таблицы)
 def show(request):
     """
@@ -178,6 +193,16 @@ def filter_items():
         res = complex_text(int(id_video), int(money))
         return render_template('filter_items_response.html', res=res)
     return render_template('filter_items.html')
+
+
+@app.route('/inner_select', methods=['GET', 'POST'])
+def inner_select():
+    if request.args:
+        author = request.args['author']
+        print(author)
+        res = _inner_select(author)
+        return render_template('inner_select_response.html', res=res)
+    return render_template('inner_select.html')
 
 
 @app.route('/show', methods=['GET', 'POST'])
