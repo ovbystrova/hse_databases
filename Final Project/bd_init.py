@@ -101,7 +101,7 @@ def complex_search(author):
 
 def _inner_select(location):
     cursor.execute(
-        'SELECT name, date_of_recording FROM (SELECT * FROM meta ) as T LEFT OUTER JOIN mimic ON T.id_video WHERE T.author="%s"' % (location)
+        'SELECT name, date_of_recording, mimic.time FROM (SELECT * FROM meta  WHERE meta.location="%s") as T LEFT OUTER JOIN mimic ON T.id_video' % (location)
     )
     res = cursor.fetchall()
     connection.commit()
@@ -201,6 +201,7 @@ def inner_select():
         author = request.args['author']
         print(author)
         res = _inner_select(author)
+        print(res)
         return render_template('inner_select_response.html', res=res)
     return render_template('inner_select.html')
 
